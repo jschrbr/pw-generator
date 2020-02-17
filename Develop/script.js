@@ -20,19 +20,29 @@ function generatePassword() {
   return;
 }
 
-function validateInputs() {
-  return true;
+function validateLength(len) {
+  if (!isNaN(len) && len > 7 && len < 129) {
+    return true;
+  }
+  return false;
 }
 
 // Write password to the #password input
 function writePassword() {
   var passwordText = document.querySelector("#password");
-
-  if (validateInputs()) {
-    var password = generatePassword();
-
-    passwordText.value = password;
+  var lower = document.querySelector("#customControlValidation1").checked;
+  var upper = document.querySelector("#customControlValidation2").checked;
+  var numeric = document.querySelector("#customControlValidation3").checked;
+  var special = document.querySelector("#customControlValidation4").checked;
+  var len = document.querySelector("#validationServer01").value;
+  if (!(upper || lower || numeric || special)) {
+    alert("Fail - check");
+  } else if (validateLength(len)) {
+      alert("generate password!")
+    //     var password = generatePassword();
+    // passwordText.value = password;
   } else {
+    alert("Fail - password length");
   }
 }
 
