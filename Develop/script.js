@@ -1,13 +1,3 @@
-//declare a-z upper and lower
-//declare 0-9
-// declare special chars
-//array of letters, numbers and specials
-
-//scratch that ascii 32 -> 126
-// lower 97-122
-// upper 65-90
-// special 33-47,58-64,91-96,123-126
-
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 var passwordText = document.querySelector("#password");
@@ -17,8 +7,54 @@ var numeric = document.querySelector("#customControlValidation3");
 var special = document.querySelector("#customControlValidation4");
 var len = document.querySelector("#validationServer01");
 
+function getChars(range) {
+  var charset = "";
+  var i = 0;
+
+  while (i < range.length) {
+    var j = range[i][0];
+    while (j <= range[i][1]) {
+      charset += String.fromCharCode(j);
+      j++;
+    }
+    i++;
+  }
+  return charset;
+}
+
+function getCharRanges(chars) {
+  var range = [];
+  if (chars[0]) {
+    //ASCII a-z
+    range.push([97, 122]);
+  }
+  if (chars[1]) {
+    //ASCII A-Z
+    range.push([65, 90]);
+  }
+  if (chars[2]) {
+    //ASCII 0-9
+    range.push([48, 57]);
+  }
+  if (chars[3]) {
+    //ASCII special chars.
+    range.push([33, 47], [58, 64], [91, 96], [123, 126]);
+  }
+  return range;
+}
+
 function generatePassword(len, chars) {
-  return;
+  var password = "";
+  var range = getCharRanges(chars);
+  var charset = getChars(range);
+  var i = 0;
+
+  while (i < len) {
+    var num = Math.floor(Math.random() * charset.length);
+    password += charset[num];
+    i++;
+  }
+  return password;
 }
 
 function validateLength(len) {
@@ -35,7 +71,6 @@ function writePassword() {
   if (!(chars[0] || chars[1] || chars[2] || chars[3])) {
     alert("Fail - check");
   } else if (validateLength(len.value)) {
-    alert("generate password!");
     var password = generatePassword(len.value, chars);
     passwordText.value = password;
   } else {
