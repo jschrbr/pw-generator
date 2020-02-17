@@ -25,15 +25,15 @@
 </head>
 
 <body>
-  <div class="wrapper">
+  <div class="wrapper bg-light">
     <header>
-      <h1>Password Generator</h1>
+      <h1 class="text-dark">Password Generator</h1>
     </header>
-    <div class="card">
-      <div class="card-header">
+    <div class="card bg-secondary text-dark">
+      <div class="card-header bg-light text-dark">
         <h2>Generate a Password</h2>
       </div>
-      <div class="card-body">
+      <div class="card-body bg-light">
         <textarea
           readonly
           id="password"
@@ -41,27 +41,88 @@
           aria-label="Generated Password"
         ></textarea>
       </div>
-      <div class="card-footer">
+      <div class="card-footer bg-light">
 
 
         <form class="was-validated">
-
-          <div class="custom-control custom-checkbox mb-3">
-            <input
-              type="checkbox"
-              class="custom-control-input"
-              id="customControlValidation1"
-            >
-            <label
-              class="custom-control-label"
-              for="customControlValidation1"
-            >Check this custom checkbox</label>
-            <div class="invalid-feedback">Please select at least one</div>
+          <div class="row">
+            <div class="custom-control custom-checkbox mb-3 col">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="customControlValidation1"
+              >
+              <label
+                class="custom-control-label"
+                for="customControlValidation1"
+              >Lower</label>
+              <div class="invalid-feedback">Please select at least one</div>
+            </div>
+            <div class="custom-control custom-checkbox mb-3 col">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="customControlValidation2"
+              >
+              <label
+                class="custom-control-label"
+                for="customControlValidation2"
+              >Upper</label>
+              <div class="invalid-feedback">Please select at least one</div>
+            </div>
           </div>
-          <button
-            id="generate"
-            class="btn"
-          >Generate Password</button>
+
+          <div class="row">
+            <div class="custom-control custom-checkbox mb-3 col">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="customControlValidation3"
+              >
+              <label
+                class="custom-control-label"
+                for="customControlValidation3"
+              >Numeric</label>
+              <div class="invalid-feedback">Please select at least one</div>
+            </div>
+            <div class="custom-control custom-checkbox mb-3 col">
+
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="customControlValidation4"
+              >
+              <label
+                class="custom-control-label"
+                for="customControlValidation4"
+              >Special</label>
+              <div class="invalid-feedback">Please select at least one</div>
+            </div>
+
+          </div>
+          <div class="container">
+            <div class="mb-3">
+              <label for="validationServer01">Password Length</label>
+              <input
+                type="text"
+                class="form-control is-valid"
+                id="validationServer01"
+                placeholder="Enter a number between 8 and 128"
+                value="8"
+                required
+                maxlength="3"
+              >
+              <div class="valid-feedback">
+              </div>
+
+            </div>
+          </div>
+          <div class="container">
+            <button
+              id="generate"
+              class="btn bg-primary text-white"
+            >Generate Password</button>
+          </div>
         </form>
 
 
