@@ -18,11 +18,9 @@
 Give it a try
 ```
 
-<div style="text-align:center">
 <a href="https://jschrbr.github.io/pw-generator/">
-<img src="./assets/Password Generator.gif"/>
+<img width="100%" src="./assets/Password Generator.gif"/>
 </a>
-</div>
 
 ## Author
 
