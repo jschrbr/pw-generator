@@ -42,10 +42,11 @@
         ></textarea>
       </div>
       <div class="card-footer bg-light">
-
-
-        <form>
-          <div class="row">
+        <form
+          class="needs-validation"
+          novalidate
+        >
+          <div class="form-row">
             <div class="custom-control custom-checkbox mb-3 col">
               <input
                 type="checkbox"
@@ -56,7 +57,6 @@
                 class="custom-control-label"
                 for="customControlValidation1"
               >Lower</label>
-              <div class="invalid-feedback">Please select at least one</div>
             </div>
             <div class="custom-control custom-checkbox mb-3 col">
               <input
@@ -68,11 +68,9 @@
                 class="custom-control-label"
                 for="customControlValidation2"
               >Upper</label>
-              <div class="invalid-feedback">Please select at least one</div>
             </div>
           </div>
-
-          <div class="row">
+          <div class="form-row">
             <div class="custom-control custom-checkbox mb-3 col">
               <input
                 type="checkbox"
@@ -83,7 +81,6 @@
                 class="custom-control-label"
                 for="customControlValidation3"
               >Numeric</label>
-              <div class="invalid-feedback">Please select at least one</div>
             </div>
             <div class="custom-control custom-checkbox mb-3 col">
 
@@ -96,36 +93,37 @@
                 class="custom-control-label"
                 for="customControlValidation4"
               >Special</label>
-              <div class="invalid-feedback">Please select at least one</div>
             </div>
 
           </div>
-          <div class="container">
-            <div class="mb-3">
-              <label for="validationServer01">Password Length</label>
+          <div
+            class="alert alert-warning"
+            role="alert"
+          >
+            Please select at least one.
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-12 mb-3">
+              <label for="validationServer01">First name</label>
               <input
                 type="text"
-                class="form-control is-valid"
+                class="form-control"
                 id="validationServer01"
-                placeholder="Enter a number between 8 and 128"
-                value="8"
-                required
+                placeholder="Please enter an integer between 8 & 128"
                 maxlength="3"
+                required
               >
-              <div class="valid-feedback">
+              <div class="invalid-tooltip">
+                Please enter an integer between 8 and 128.
               </div>
-
             </div>
           </div>
-
-        </form>
-        <div class="container">
           <button
-            id="generate"
-            class="btn bg-primary text-white"
-          >Generate Password</button>
-        </div>
-
+            class="btn btn-primary"
+            type="submit"
+          >Submit form</button>
+        </form>
 
       </div>
     </div>

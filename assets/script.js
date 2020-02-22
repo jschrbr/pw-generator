@@ -1,11 +1,9 @@
-// Assignment Code
 var generateBtn = document.querySelector("#generate");
 var passwordText = document.querySelector("#password");
-var lowerCaseCheckBox = document.querySelector("#customControlValidation1");
-var upperCaseCheckBox = document.querySelector("#customControlValidation2");
-var numericCheckBox = document.querySelector("#customControlValidation3");
-var specialCheckBox = document.querySelector("#customControlValidation4");
-var passwordLength = document.querySelector("#validationServer01");
+var formEl = document.querySelector("form");
+var checkBoxClassEl = document.querySelector(".custom-control-input");
+var checkBoxAlert = document.querySelector(".alert");
+checkBoxAlert.style.display = "none";
 
 function getChars(range) {
   var charset = "";
@@ -59,29 +57,53 @@ function generatePassword(passwordLength, charTypes) {
 
 // Check if the entered password length is a number and between 8 and 128
 function validateLength(len) {
-  if (!isNaN(len) && len >= 8 && len <= 128) {
+  if (!isNaN(len.value) && len.value >= 8 && len.value <= 128) {
+    len.setAttribute("class", "form-control is-valid");
     return true;
+  }
+  len.setAttribute("class", "form-control is-invalid");
+  return false;
+}
+
+// Check if at least 1 box is selcted
+function validateBoxes(event) {
+  var i = 0;
+  checkBoxAlert.style.display = "none";
+  while (i < event.length - 2) {
+    event[i].classList.remove("is-invalid");
+    if (event[i].checked) {
+      while (++i < event.length - 2) {
+        event[i].classList.remove("is-invalid");
+      }
+      return true;
+    }
+    i++;
+  }
+  checkBoxAlert.style.display = "block";
+  i = 0;
+  while (i < event.length - 2) {
+    event[i].classList.remove("is-invalid");
+    event[i].classList.add("is-invalid");
+    i++;
   }
   return false;
 }
 
 // Write password to the #password input
-function writePassword() {
-  var charTypes = [
-    lowerCaseCheckBox.checked,
-    upperCaseCheckBox.checked,
-    numericCheckBox.checked,
-    specialCheckBox.checked
-  ];
-  if (!(charTypes[0] || charTypes[1] || charTypes[2] || charTypes[3])) {
-    alert("Fail - check");
-  } else if (validateLength(passwordLength.value)) {
-    var password = generatePassword(passwordLength.value, charTypes);
+function writePassword(event) {
+  event.preventDefault();
+  var charTypes = [];
+  var i = 0;
+  while (i < event.target.length - 2) {
+    charTypes.push(event.target[i].checked);
+    i++;
+  }
+  var validate = [validateLength(event.target[4]), validateBoxes(event.target)];
+  if (validate[0] && validate[1]) {
+    var password = generatePassword(event.target[4].value, charTypes);
     passwordText.value = password;
-  } else {
-    alert("Fail - password length");
   }
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+formEl.addEventListener("submit", writePassword);
