@@ -107,3 +107,6 @@ function writePassword(event) {
 
 // Add event listener to generate button
 formEl.addEventListener("submit", writePassword);
+formEl.addEventListener("change", function() {
+  event.preventDefault();
+});
